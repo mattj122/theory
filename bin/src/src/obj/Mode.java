@@ -2,6 +2,8 @@ package obj;
 
 public class Mode {
 	int [] steps;
+	int [] invSteps;
+	int modeNum;
 	public Mode() {
 		
 	}
@@ -15,30 +17,25 @@ public class Mode {
 	 * 6 = Locrian
 	 */
 	public void setModeTo(int n) {
-		switch(n) {
-		case 0: 
-			steps = new int[] {1,1,0,1,1,1,0};
-		break;
-		case 1: 
-			steps = new int[] {1,0,1,1,1,0,1};
-		break;
-		case 2: 
-			steps = new int[] {0,1,1,1,0,1,1};
-		break;
-		case 3: 
-			steps = new int[] {1,1,1,0,1,1,0};
-		break;
-		case 4: 
-			steps = new int[] {1,1,0,1,1,0,1};
-		break;
-		case 5: 
-			steps = new int[] {1,0,1,1,0,1,1};
-		break;
-		case 6: 
-			steps = new int[] {0,1,1,0,1,1,1};
-		break;
-		
+		modeNum = n;
+		int[]stepsTemp = {2,2,1,2,2,2,1};
+		incrSt(n, stepsTemp);
+		steps = stepsTemp;
+	}
+	private int [] incrSt(int n, int[] stepsT) {
+		int temp = stepsT[0];
+		if(n <= 0) {
+			return stepsT;
 		}
+		for(int i = 0; i < stepsT.length; i++) {
+			if(i+1 == stepsT.length) {
+				stepsT[i] = temp;
+			}
+			else {
+				stepsT[i] = stepsT[i+1];
+			}
+		}
+		return incrSt(n-1, stepsT);
 	}
 	public int[] getMode(){
 		return steps;
@@ -46,7 +43,12 @@ public class Mode {
 	public void print() {
 		for(int i = 0; i < steps.length; i ++) {
 			System.out.println(steps[i]);
-		}
-		
+		}	
+	}
+	public int getModeNum() {
+		return modeNum;
+	}
+	public int[] getInverse() {
+		return invSteps;
 	}
 }

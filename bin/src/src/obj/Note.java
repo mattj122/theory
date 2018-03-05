@@ -10,22 +10,28 @@ public class Note {
 	public String toString() {
 		num %= 12;
 		switch(num) {
-		case 0: return "C" + octave;
-		case 1: return "C#" + octave;
-		case 2: return "D" + octave;
-		case 3: return "D#" + octave;
-		case 4: return "E" + octave;
-		case 5: return "F" + octave;
-		case 6: return "F#" + octave;
-		case 7: return "G" + octave;
-		case 8: return "G#" + octave;
-		case 9: return "A" + octave;
-		case 10: return "A#" + octave;
-		case 11: return "B" + octave;
+		case 0: return "C";
+		case 1: return "C#";
+		case 2: return "D";
+		case 3: return "D#";
+		case 4: return "E";
+		case 5: return "F";
+		case 6: return "F#";
+		case 7: return "G";
+		case 8: return "G#";
+		case 9: return "A";
+		case 10: return "A#";
+		case 11: return "B";
 		default: return null;
 		}
 	}
-	public int getNoteNum(){
+	public int getNoteNumWOct(){
 		return num;
+	}
+	public int getNoteNum() {
+		return num %= 12;
+	}
+	public int getOctave() {
+		return octave;
 	}
 }
